@@ -1,7 +1,11 @@
-export default function Home() {
+import { Text } from '@chakra-ui/react';
+
+function HomePage() {
   return (
     <div>
-      <h1>Carbee</h1>
+      <Text>Home Page</Text>
     </div>
   );
 }
+
+export default HomePage;
