@@ -1,19 +1,19 @@
-"use client";
-import { forwardRef, ForwardedRef } from "react";
-import { useController } from "react-hook-form";
+'use client';
+import { forwardRef, ForwardedRef } from 'react';
+import { useController } from 'react-hook-form';
 import {
   FormControl,
   FormErrorMessage,
   FormHelperText,
   FormLabel,
   Input as ChakraInput,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
-import { IPropTypes } from "./Input.types";
+import { IPropTypes } from './Input.types';
 
 function Input(
   props: IPropTypes,
-  ref?: ForwardedRef<HTMLInputElement>
+  ref?: ForwardedRef<HTMLInputElement>,
 ): JSX.Element {
   const {
     helperText,
@@ -39,6 +39,7 @@ function Input(
       <ChakraInput
         {...field}
         ref={ref}
+        type={controller.type || 'text'}
         aria-labelledby={`${id || field.name}-label`}
         placeholder={placeholder}
       />
