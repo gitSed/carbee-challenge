@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import NextImage from 'next/image';
 import { AspectRatio, Box, Flex, ToastId, useToast } from '@chakra-ui/react';
+import { useQueryClient } from 'react-query';
 
 import { LoginForm } from '@/features/login/components';
 import { Alert } from '@/features/shared/components';
@@ -22,6 +23,7 @@ function LoginContainer(props: ILoginContainerProps) {
 
   const router = useRouter();
   const toastIdRef = useRef<ToastId>();
+  const queryClient = useQueryClient();
 
   const toast = useToast({
     position: 'bottom',
@@ -70,7 +72,10 @@ function LoginContainer(props: ILoginContainerProps) {
   }, [isError]);
 
   useEffect(() => {
-    if (isSuccess) {
+    if (isSuccess && data) {
+      // Store the token in the query client
+      queryClient.setQueryData('authToken', data.token);
+
       router.push('/dashboard');
     }
   }, [isSuccess]);
