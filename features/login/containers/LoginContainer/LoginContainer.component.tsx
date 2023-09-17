@@ -5,6 +5,7 @@ import { AspectRatio, Box, Flex } from '@chakra-ui/react';
 
 import { LoginForm } from '@/features/login/components';
 import { Account, LoginUserRequest } from '@/modules/login/domain/entities';
+import { loginUser } from '@/modules/login/application';
 
 import { ILoginContainerProps } from './LoginContainer.types';
 
@@ -12,7 +13,10 @@ const ImagePlaceholderUrl =
   'https://res.cloudinary.com/dtdygo8fv/image/upload/v1694909480/carbee/c6a7etgwtvqpcpkyvou0.png';
 
 function LoginContainer(props: ILoginContainerProps) {
-  const { repository } = props;
+  const { repository, fetcher } = props;
+
+  const { error, isError, isLoading, isSuccess, data, mutate } =
+    fetcher.loginMutation(loginUser(repository));
 
   const handleSubmit = (formValues: Account) => {
     const request: LoginUserRequest = {
@@ -20,7 +24,7 @@ function LoginContainer(props: ILoginContainerProps) {
       username: formValues.username,
     };
 
-    repository.login(request);
+    mutate(request);
   };
 
   return (
@@ -45,8 +49,8 @@ function LoginContainer(props: ILoginContainerProps) {
               username: '',
               password: '',
             }}
-            isSubmitting={false}
-            isSuccess={false}
+            isSubmitting={isLoading}
+            isSuccess={isSuccess}
             onSubmit={handleSubmit}
           />
         </Box>

@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import { withStyledSystem } from '@/features/shared/components';
+import {
+  withFetcherSystem,
+  withStyledSystem,
+} from '@/features/shared/components';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,7 +21,9 @@ function App({ children }: { children: React.ReactNode }) {
     'chakra-ui',
   );
 
-  return <AppWithChakraUI>{children}</AppWithChakraUI>;
+  const AppWithReactQuery = withFetcherSystem(AppWithChakraUI, 'react-query');
+
+  return <AppWithReactQuery>{children}</AppWithReactQuery>;
 }
 
 function RootLayout({ children }: { children: React.ReactNode }) {
