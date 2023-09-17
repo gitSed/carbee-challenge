@@ -3,6 +3,7 @@ import { extendTheme } from '@chakra-ui/react';
 // foundations
 import breakpoints from './theme-foundations/breakpoints';
 import textStyles from './theme-foundations/textStyles';
+import colors from './theme-foundations/colors';
 
 // components
 import Button from './theme-components/Button';
@@ -15,6 +16,7 @@ const defaultTheme: Record<string, unknown> = {
   },
   breakpoints,
   textStyles,
+  colors,
   components: {
     Button,
     Link,

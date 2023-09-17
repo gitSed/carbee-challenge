@@ -14,7 +14,7 @@ class FetchAccountRepository implements AccountRepository {
     });
 
     if (!response.ok) {
-      throw new FetchError('Account could not be logged', response.status);
+      throw new FetchError('Invalid credentials', response.status);
     }
 
     return (await response.json()) as LoginUserResponse;
