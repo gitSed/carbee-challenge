@@ -28,10 +28,7 @@ function LoginContainer(props: ILoginContainerProps) {
   };
 
   return (
-    <Flex
-      h="100vh"
-      gap={{ base: '1rem', md: '1.5rem', lg: '2.75rem', xl: '3.75rem' }}
-    >
+    <Flex h="100vh" flexDirection={{ base: 'column', md: 'row' }}>
       <Flex flex="1 1 50%">
         <AspectRatio w="full" ratio={1}>
           <NextImage
@@ -43,7 +40,13 @@ function LoginContainer(props: ILoginContainerProps) {
         </AspectRatio>
       </Flex>
       <Flex flex="1 1 50%">
-        <Box paddingRight={{ base: 4, md: 8, lg: '7rem', xl: '10rem' }}>
+        <Box
+          w="full"
+          maxW={700}
+          margin="0 auto"
+          paddingX={{ base: 4, md: 8, lg: '4rem', xl: '7rem' }}
+          paddingTop={{ base: 4, md: 8, lg: '7rem', xl: '10rem' }}
+        >
           <LoginForm
             initialValues={{
               username: '',

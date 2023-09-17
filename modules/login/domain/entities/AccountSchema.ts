@@ -7,7 +7,7 @@ import Account from './Account';
 interface IAccountSchema extends Account {}
 
 const AccountSchema = implementModel<IAccountSchema>().with({
-  username: z.string().min(3),
+  username: z.string().email(),
   password: z.string().min(8),
 });
 
