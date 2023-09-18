@@ -1,7 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
-import { Button, Flex, VStack } from '@chakra-ui/react';
+import { Button, Flex } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -14,24 +13,17 @@ import {
 } from './UpcomingDateForm.types';
 
 function UpcomingDateForm(props: IUpcomingDateFormProps) {
-  const { initialValues, isSubmitting, isSuccess, onSubmit } = props;
+  const { initialValues, isSubmitting, onSubmit } = props;
 
   const {
     control,
     formState: { isValid },
     handleSubmit,
-    reset,
   } = useForm<IUpcomingDateFormFields>({
     resolver: zodResolver(UpcomingDateSchema),
     mode: 'onBlur',
     defaultValues: { ...initialValues },
   });
-
-  useEffect(() => {
-    if (isSuccess) {
-      reset();
-    }
-  }, [isSuccess]);
 
   return (
     <Flex as="form" onSubmit={handleSubmit(onSubmit)} flexDirection="column">
@@ -50,7 +42,7 @@ function UpcomingDateForm(props: IUpcomingDateFormProps) {
         isDisabled={!isValid}
         isLoading={isSubmitting}
       >
-        Check Availability
+        Check for Availability
       </Button>
     </Flex>
   );
