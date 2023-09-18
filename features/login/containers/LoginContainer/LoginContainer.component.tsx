@@ -2,9 +2,9 @@
 
 import { useCallback, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import NextImage from 'next/image';
 import { AspectRatio, Box, Flex, ToastId, useToast } from '@chakra-ui/react';
 import { useQueryClient } from 'react-query';
+import NextImage from 'next/image';
 
 import { LoginForm } from '@/features/login/components';
 import { Alert } from '@/features/shared/components';

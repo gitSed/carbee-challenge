@@ -35,20 +35,18 @@ function UpcomingDateForm(props: IUpcomingDateFormProps) {
 
   return (
     <Flex as="form" onSubmit={handleSubmit(onSubmit)} flexDirection="column">
-      <VStack gap="1rem">
-        <Input
-          hiddenLabel
-          type="date"
-          label="Appointment Date"
-          name="appointmentDate"
-          control={control}
-          placeholder="Choose a date"
-          isDisabled={isSubmitting}
-        />
-      </VStack>
+      <Input
+        hiddenLabel
+        type="date"
+        label="Appointment Date"
+        name="appointmentDate"
+        control={control}
+        placeholder="Choose a date"
+        isDisabled={isSubmitting}
+      />
       <Button
         type="submit"
-        marginTop="2rem"
+        marginTop="1.5rem"
         isDisabled={!isValid}
         isLoading={isSubmitting}
       >
