@@ -1,34 +1,14 @@
-import { useState } from 'react';
 import { Flex, Stack, Text } from '@chakra-ui/react';
 
-import { BookAppointmentSection } from '@/features/dashboard/components';
-import { ExistingAppointmentsContainer } from '@/features/dashboard/containers';
-import { UpcomingDate } from '@/modules/dashboard/domain/entities';
-import { getAvailableDates } from '@/modules/dashboard/application';
+import {
+  BookAppointmentContainer,
+  ExistingAppointmentsContainer,
+} from '@/features/dashboard/containers';
 
 import { IAppointmentContainerProps } from './DashboardContainer.types';
 
 function DashboardContainer(props: IAppointmentContainerProps) {
   const { repository, fetcher, authToken } = props;
-
-  const [appointmentDate, setAppointmentDate] = useState<string | undefined>();
-
-  const { isError, isLoading, error, data } = fetcher.getAvailableDatesQuery(
-    getAvailableDates(repository, {
-      appointmentDate: appointmentDate as string,
-      token: authToken,
-    }),
-    {
-      enabled: !!appointmentDate && !!authToken,
-      queryKey: { appointmentDate },
-    },
-  );
-
-  const handleSubmit = (formValues: UpcomingDate) => {
-    const { appointmentDate } = formValues;
-
-    setAppointmentDate(appointmentDate);
-  };
 
   return (
     <Flex
@@ -48,12 +28,10 @@ function DashboardContainer(props: IAppointmentContainerProps) {
         borderColor="gray.200"
       >
         <Text textStyle="h3">Book an Appointment</Text>
-        <BookAppointmentSection
-          data={data}
-          handleSubmit={handleSubmit}
-          isError={isError}
-          error={error ? (error as any).message : undefined}
-          isLoading={isLoading}
+        <BookAppointmentContainer
+          fetcher={fetcher}
+          repository={repository}
+          authToken={authToken}
         />
       </Stack>
       <Stack
