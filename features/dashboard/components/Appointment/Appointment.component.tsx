@@ -58,7 +58,7 @@ function Appointment(props: IAppointmentProps) {
         <Text textStyle="subtitle2" fontWeight="700">
           Complete Time:
         </Text>
-        <Text textStyle="paragraph">{calculateCompleteTime(startTime)}</Text>
+        <Text textStyle="paragraph">{calculateCompleteTime()}</Text>
       </Flex>
     );
   };
