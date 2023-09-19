@@ -45,6 +45,24 @@ function Appointment(props: IAppointmentProps) {
     }
   };
 
+  const calculateCompleteTime = () => {
+    const date = new Date(startTime);
+    const completeTime = date.setMinutes(date.getMinutes() + duration);
+
+    return formatTime(new Date(completeTime).toISOString());
+  };
+
+  const renderCompletTimeLine = () => {
+    return (
+      <Flex alignItems="center" gap="0.75rem">
+        <Text textStyle="subtitle2" fontWeight="700">
+          Complete Time:
+        </Text>
+        <Text textStyle="paragraph">{calculateCompleteTime(startTime)}</Text>
+      </Flex>
+    );
+  };
+
   return (
     <Card border="1px solid" borderColor="gray.100" minW="80" maxW="80">
       <CardHeader>
@@ -70,7 +88,7 @@ function Appointment(props: IAppointmentProps) {
           <Text textStyle="subtitle2" fontWeight="700">
             Duration:
           </Text>
-          <Text textStyle="paragraph">{duration}</Text>
+          <Text textStyle="paragraph">{duration} minutes</Text>
         </Flex>
         <Flex alignItems="center" gap="0.75rem">
           <Text textStyle="subtitle2" fontWeight="700">
@@ -78,6 +96,7 @@ function Appointment(props: IAppointmentProps) {
           </Text>
           <Text textStyle="paragraph">{formatTime(startTime)}</Text>
         </Flex>
+        {status === 'COMPLETE' && renderCompletTimeLine()}
       </CardBody>
     </Card>
   );
