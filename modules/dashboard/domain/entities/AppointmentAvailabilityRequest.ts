@@ -1,6 +1,7 @@
-interface AppointmentAvailabilityRequest {
+import { ProtectedRequest } from '@/modules/shared/domain/entities';
+
+interface AppointmentAvailabilityRequest extends ProtectedRequest {
   appointmentDate: string;
-  token: string;
 }
 
 export default AppointmentAvailabilityRequest;

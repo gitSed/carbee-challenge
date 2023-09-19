@@ -1,4 +1,6 @@
-import { AppointmentAvailability } from '../entities';
+import { Connection } from '@/modules/shared/domain/entities';
+
+import { Appointment, AppointmentAvailability } from '../entities';
 
 interface AppointmentFetcher {
   readonly getAvailableDatesQuery: (
@@ -6,6 +8,17 @@ interface AppointmentFetcher {
     options: { enabled?: boolean; queryKey: Record<string, unknown> },
   ) => {
     data?: AppointmentAvailability[];
+    isLoading: boolean;
+    isSuccess: boolean;
+    isError: boolean;
+    error: unknown;
+  };
+
+  readonly getExistingAppointmentsQuery: (
+    queryFn: () => Promise<Connection<Appointment>>,
+    options: { enabled?: boolean; queryKey: Record<string, unknown> },
+  ) => {
+    data?: Connection<Appointment>;
     isLoading: boolean;
     isSuccess: boolean;
     isError: boolean;

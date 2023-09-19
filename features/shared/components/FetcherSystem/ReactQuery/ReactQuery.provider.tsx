@@ -1,9 +1,17 @@
-"use client";
-import { QueryClientProvider, QueryClient } from "react-query";
+'use client';
 
-import { IReactQueryProviderProps } from "./ReactQuery.types";
+import { QueryClientProvider, QueryClient } from 'react-query';
 
-const queryClient = new QueryClient();
+import { IReactQueryProviderProps } from './ReactQuery.types';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 function ReactQueryProvider(props: IReactQueryProviderProps) {
   const { children } = props;
